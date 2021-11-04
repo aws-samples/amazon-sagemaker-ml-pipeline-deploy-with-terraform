@@ -51,7 +51,7 @@ data "aws_iam_policy_document" "lambda_invoke" {
       "lambda:InvokeFunction"
     ]
     resources = [
-      "*",
+      aws_lambda_function.lambda_function.arn,
     ]
   }
 }
@@ -158,9 +158,32 @@ resource "aws_iam_role" "sagemaker_exec_role" {
 }
 
 // Policies for sagemaker execution training job
-resource "aws_iam_role_policy_attachment" "s3_full_access" {
+resource "aws_iam_policy" "sagemaker_s3_policy" {
+  name   = "${var.project_name}-sagemaker-s3-policy"
+  policy = <<-EOF
+      {
+          "Version": "2012-10-17",
+          "Statement": [
+              {
+                  "Effect": "Allow",
+                  "Action": [
+                      "s3:*"
+                  ],
+                  "Resource": [
+                   "${aws_s3_bucket.bucket_training_data.arn}",
+                   "${aws_s3_bucket.bucket_output_models.arn}",
+                   "${aws_s3_bucket.bucket_training_data.arn}/*",
+                   "${aws_s3_bucket.bucket_output_models.arn}/*"
+                  ]
+              }
+          ]
+      }
+EOF
+}
+
+resource "aws_iam_role_policy_attachment" "s3_restricted_access" {
   role       = aws_iam_role.sagemaker_exec_role.name
-  policy_arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+  policy_arn = aws_iam_policy.sagemaker_s3_policy.arn
 }
 
 resource "aws_iam_role_policy_attachment" "sagemaker_full_access" {
