@@ -81,7 +81,8 @@ resource "aws_iam_policy" "sagemaker_policy" {
                       "sagemaker:StopTrainingJob",
                       "sagemaker:createModel",
                       "sagemaker:createEndpointConfig",
-                      "sagemaker:createEndpoint"
+                      "sagemaker:createEndpoint",
+                      "sagemaker:addTags"
                   ],
                   "Resource": [
                    "*"
