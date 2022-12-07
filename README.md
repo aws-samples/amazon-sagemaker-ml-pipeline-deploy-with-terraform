@@ -50,11 +50,11 @@ export AWS_PROFILE=<your_aws_cli_profile_name> #If already done at the step abov
 
 aws ecr get-login-password --region eu-west-1 | docker login --username AWS --password-stdin <account_number>.dkr.ecr.eu-west-1.amazonaws.com
 
-docker build -t ml-training .
+docker build -t ml-pipeline-terraform-demo .
 
-docker tag ml-training:latest <account_number>.dkr.ecr.eu-west-1.amazonaws.com/<ecr_repository_name>:latest
+docker tag ml-training:latest <account_number>.dkr.ecr.eu-west-1.amazonaws.com/ml-pipeline-terraform-demo:latest
 
-docker push <account_number>.dkr.ecr.eu-west-1.amazonaws.com/<ecr_repository_name>
+docker push <account_number>.dkr.ecr.eu-west-1.amazonaws.com/ml-pipeline-terraform-demo
 ```
 
 ### Run the ML pipeline
