@@ -1,6 +1,6 @@
 ## Change project_name to your project name
 project_name = "ml-pipeline-terraform-demo" //put your project name here
-region = "eu-west-1" //change region if desired to deploy in another region
+region = "us-east-1" //change region if desired to deploy in another region
 
 ## Change instance types amd volume size for SageMaker if desired
 training_instance_type = "ml.m5.xlarge"

@@ -1,2 +1,7 @@
 **/.idea
 **/.DS_Store
+*.zip
+.terraform/
+.terraform.lock.hcl
+terraform.tfstate
+terraform.tfstate.backup
