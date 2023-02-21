@@ -7,6 +7,6 @@ gunicorn==20.1.0
 # dependencies for the custom model
 boto3
 scikit-learn==1.0.2
-numpy==1.21.6
+numpy==1.22.0
 scipy==1.7.3
 pandas==1.3.5
