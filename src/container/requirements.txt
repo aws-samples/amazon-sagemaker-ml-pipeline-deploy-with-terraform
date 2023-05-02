@@ -1,5 +1,5 @@
 # required to serve the model
-flask==2.2.2
+flask==2.3.2
 gevent==22.10.2
 gunicorn==20.1.0
 
